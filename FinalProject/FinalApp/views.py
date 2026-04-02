@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib import messages
+from .models import FoodResource
 
 
 
@@ -18,3 +19,16 @@ def register(request):
 		form = UserCreationForm()
 
 	return render(request, "register.html", {"form":form})
+
+
+def resource_map(request):
+	resource_type = request.GET.get('type')
+	if resource_type:
+		resources = FoodResource.objects.filter(resource_type=resource_type)
+	else:
+		resources = FoodResource.objects.all()
+
+	context = {
+	'resources':resources,
+	}
+	return render(request, 'resources/map.html', context)

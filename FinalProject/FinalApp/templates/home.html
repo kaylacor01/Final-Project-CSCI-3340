@@ -141,13 +141,13 @@
     background: #e6e6e6;
   }
 
-  /* ⭐ Logout button moved to bottom */
+  /* ⭐ Logout button fixed at bottom center */
   .logout-container {
-    width: 100%;
-    display: flex;
-    justify-content: center;
-    margin-top: 40px;
-    margin-bottom: 40px;
+    position: fixed;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 9999;
   }
 </style>
 
@@ -200,7 +200,7 @@
 <!-- Private Chat Button -->
 <a class="chat-button" href="#">Private Chat</a>
 
-<!-- ⭐ Logout moved to bottom -->
+<!-- ⭐ Logout button at bottom center -->
 <div class="logout-container">
   <form action="{% url 'logout' %}" method="post">
     {% csrf_token %}

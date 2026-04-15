@@ -3,6 +3,115 @@
 {% block title %}Home{% endblock %}
 
 {% block content %}
+
+<style>
+  /* Calendar container */
+  .calendar-widget {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    width: 180px;
+    background: #ffffff;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    padding: 10px;
+    font-family: Arial, sans-serif;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.15);
+    z-index: 9999;
+  }
+
+  .calendar-header {
+    text-align: center;
+    font-weight: bold;
+    margin-bottom: 8px;
+  }
+
+  .calendar-grid {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 4px;
+    text-align: center;
+    font-size: 12px;
+  }
+
+  .day-name {
+    font-weight: bold;
+    color: #444;
+  }
+
+  .day {
+    padding: 4px;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+
+  .day:hover {
+    background: #e6e6e6;
+  }
+
+  .today {
+    background: #4a90e2;
+    color: white;
+    font-weight: bold;
+  }
+</style>
+
+<!-- Calendar Widget -->
+<div class="calendar-widget">
+  <div class="calendar-header">April 2026</div>
+
+  <div class="calendar-grid">
+    <!-- Day names -->
+    <div class="day-name">Sun</div>
+    <div class="day-name">Mon</div>
+    <div class="day-name">Tue</div>
+    <div class="day-name">Wed</div>
+    <div class="day-name">Thu</div>
+    <div class="day-name">Fri</div>
+    <div class="day-name">Sat</div>
+
+    <!-- April 2026 layout (starts on Wednesday) -->
+    <div></div>
+    <div></div>
+    <div></div>
+
+    <div class="day">1</div>
+    <div class="day">2</div>
+    <div class="day">3</div>
+    <div class="day">4</div>
+
+    <div class="day">5</div>
+    <div class="day">6</div>
+    <div class="day">7</div>
+    <div class="day">8</div>
+    <div class="day">9</div>
+    <div class="day">10</div>
+    <div class="day">11</div>
+
+    <div class="day">12</div>
+    <div class="day">13</div>
+    <div class="day today">14</div>
+    <div class="day">15</div>
+    <div class="day">16</div>
+    <div class="day">17</div>
+    <div class="day">18</div>
+
+    <div class="day">19</div>
+    <div class="day">20</div>
+    <div class="day">21</div>
+    <div class="day">22</div>
+    <div class="day">23</div>
+    <div class="day">24</div>
+    <div class="day">25</div>
+
+    <div class="day">26</div>
+    <div class="day">27</div>
+    <div class="day">28</div>
+    <div class="day">29</div>
+    <div class="day">30</div>
+  </div>
+</div>
+
 {% if user.is_authenticated %}
 Hi {{ user.username }}!
 <form action="{% url 'logout' %}" method="post">
@@ -13,4 +122,5 @@ Hi {{ user.username }}!
 <p>You are not logged in</p>
 <a href="{% url 'login' %}">Log In</a>
 {% endif %}
+
 {% endblock %}

@@ -114,7 +114,7 @@
     background: #3a78c2;
   }
 
-  /* ⭐ ADDED: Vertical Sidebar */
+  /* Sidebar */
   .sidebar {
     position: fixed;
     top: 0;
@@ -140,9 +140,29 @@
   .sidebar a:hover {
     background: #e6e6e6;
   }
+
+  /* ⭐ Logout button moved to bottom */
+  .logout-container {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    margin-top: 40px;
+    margin-bottom: 40px;
+  }
 </style>
 
-<!-- Calendar Widget (always visible) -->
+{% if user.is_authenticated %}
+
+<!-- Sidebar -->
+<div class="sidebar">
+  <a href="#">Favorites</a>
+  <a href="#">Friends</a>
+  <a href="#">Following</a>
+  <a href="#">Community</a>
+  <a href="#">Extra Resources</a>
+</div>
+
+<!-- Calendar -->
 <div class="calendar-widget">
   <div class="calendar-header">April 2026</div>
 
@@ -169,18 +189,7 @@
   </div>
 </div>
 
-{% if user.is_authenticated %}
-
-<!-- ⭐ ADDED: Sidebar only when logged in -->
-<div class="sidebar">
-  <a href="#">Favorites</a>
-  <a href="#">Friends</a>
-  <a href="#">Following</a>
-  <a href="#">Community</a>
-  <a href="#">Extra Resources</a>
-</div>
-
-<!-- Search bar only when logged in -->
+<!-- Search bar -->
 <div class="search-container">
   <form class="search-box">
     <input type="text" placeholder="Search...">
@@ -191,11 +200,13 @@
 <!-- Private Chat Button -->
 <a class="chat-button" href="#">Private Chat</a>
 
-Hi {{ user.username }}!
-<form action="{% url 'logout' %}" method="post">
-  {% csrf_token %}
-  <button type="submit">Log Out</button>
-</form>
+<!-- ⭐ Logout moved to bottom -->
+<div class="logout-container">
+  <form action="{% url 'logout' %}" method="post">
+    {% csrf_token %}
+    <button type="submit">Log Out</button>
+  </form>
+</div>
 
 {% else %}
 

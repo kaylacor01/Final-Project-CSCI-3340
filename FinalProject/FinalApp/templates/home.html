@@ -113,6 +113,33 @@
   .chat-button:hover {
     background: #3a78c2;
   }
+
+  /* ⭐ ADDED: Vertical Sidebar */
+  .sidebar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 180px;
+    height: 100%;
+    background: #f4f4f4;
+    border-right: 1px solid #ccc;
+    padding-top: 80px;
+    font-family: Arial, sans-serif;
+    z-index: 9998;
+  }
+
+  .sidebar a {
+    display: block;
+    padding: 12px 20px;
+    color: #333;
+    text-decoration: none;
+    font-size: 15px;
+    border-bottom: 1px solid #ddd;
+  }
+
+  .sidebar a:hover {
+    background: #e6e6e6;
+  }
 </style>
 
 <!-- Calendar Widget (always visible) -->
@@ -144,6 +171,15 @@
 
 {% if user.is_authenticated %}
 
+<!-- ⭐ ADDED: Sidebar only when logged in -->
+<div class="sidebar">
+  <a href="#">Favorites</a>
+  <a href="#">Friends</a>
+  <a href="#">Following</a>
+  <a href="#">Community</a>
+  <a href="#">Extra Resources</a>
+</div>
+
 <!-- Search bar only when logged in -->
 <div class="search-container">
   <form class="search-box">
@@ -152,7 +188,7 @@
   </form>
 </div>
 
-<!-- Private Chat Button (only when logged in) -->
+<!-- Private Chat Button -->
 <a class="chat-button" href="#">Private Chat</a>
 
 Hi {{ user.username }}!

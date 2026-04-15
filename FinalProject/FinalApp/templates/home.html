@@ -5,6 +5,45 @@
 {% block content %}
 
 <style>
+  /* Search bar styling */
+  .search-container {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+    margin-bottom: 20px;
+  }
+
+  .search-box {
+    width: 50%;
+    max-width: 400px;
+    display: flex;
+    border: 1px solid #ccc;
+    border-radius: 25px;
+    overflow: hidden;
+  }
+
+  .search-box input {
+    flex: 1;
+    padding: 10px 15px;
+    border: none;
+    outline: none;
+    font-size: 14px;
+  }
+
+  .search-box button {
+    padding: 10px 20px;
+    background: #4a90e2;
+    color: white;
+    border: none;
+    cursor: pointer;
+    font-size: 14px;
+  }
+
+  .search-box button:hover {
+    background: #3a78c2;
+  }
+
   /* Calendar container */
   .calendar-widget {
     position: fixed;
@@ -56,12 +95,11 @@
   }
 </style>
 
-<!-- Calendar Widget -->
+<!-- Calendar Widget (always visible) -->
 <div class="calendar-widget">
   <div class="calendar-header">April 2026</div>
 
   <div class="calendar-grid">
-    <!-- Day names -->
     <div class="day-name">Sun</div>
     <div class="day-name">Mon</div>
     <div class="day-name">Tue</div>
@@ -70,57 +108,41 @@
     <div class="day-name">Fri</div>
     <div class="day-name">Sat</div>
 
-    <!-- April 2026 layout (starts on Wednesday) -->
-    <div></div>
-    <div></div>
-    <div></div>
+    <div></div><div></div><div></div>
 
-    <div class="day">1</div>
-    <div class="day">2</div>
-    <div class="day">3</div>
-    <div class="day">4</div>
+    <div class="day">1</div><div class="day">2</div><div class="day">3</div><div class="day">4</div>
 
-    <div class="day">5</div>
-    <div class="day">6</div>
-    <div class="day">7</div>
-    <div class="day">8</div>
-    <div class="day">9</div>
-    <div class="day">10</div>
-    <div class="day">11</div>
+    <div class="day">5</div><div class="day">6</div><div class="day">7</div><div class="day">8</div><div class="day">9</div><div class="day">10</div><div class="day">11</div>
 
-    <div class="day">12</div>
-    <div class="day">13</div>
-    <div class="day today">14</div>
-    <div class="day">15</div>
-    <div class="day">16</div>
-    <div class="day">17</div>
-    <div class="day">18</div>
+    <div class="day">12</div><div class="day">13</div><div class="day today">14</div><div class="day">15</div><div class="day">16</div><div class="day">17</div><div class="day">18</div>
 
-    <div class="day">19</div>
-    <div class="day">20</div>
-    <div class="day">21</div>
-    <div class="day">22</div>
-    <div class="day">23</div>
-    <div class="day">24</div>
-    <div class="day">25</div>
+    <div class="day">19</div><div class="day">20</div><div class="day">21</div><div class="day">22</div><div class="day">23</div><div class="day">24</div><div class="day">25</div>
 
-    <div class="day">26</div>
-    <div class="day">27</div>
-    <div class="day">28</div>
-    <div class="day">29</div>
-    <div class="day">30</div>
+    <div class="day">26</div><div class="day">27</div><div class="day">28</div><div class="day">29</div><div class="day">30</div>
   </div>
 </div>
 
 {% if user.is_authenticated %}
+
+<!-- Search bar only when logged in -->
+<div class="search-container">
+  <form class="search-box">
+    <input type="text" placeholder="Search...">
+    <button type="submit">Go</button>
+  </form>
+</div>
+
 Hi {{ user.username }}!
 <form action="{% url 'logout' %}" method="post">
   {% csrf_token %}
   <button type="submit">Log Out</button>
 </form>
+
 {% else %}
+
 <p>You are not logged in</p>
 <a href="{% url 'login' %}">Log In</a>
+
 {% endif %}
 
 {% endblock %}

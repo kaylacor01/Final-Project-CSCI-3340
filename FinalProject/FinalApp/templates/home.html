@@ -93,6 +93,26 @@
     color: white;
     font-weight: bold;
   }
+
+  /* Private Chat Button */
+  .chat-button {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background: #4a90e2;
+    color: white;
+    padding: 12px 18px;
+    border-radius: 30px;
+    font-size: 14px;
+    text-decoration: none;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+    cursor: pointer;
+    z-index: 9999;
+  }
+
+  .chat-button:hover {
+    background: #3a78c2;
+  }
 </style>
 
 <!-- Calendar Widget (always visible) -->
@@ -131,6 +151,9 @@
     <button type="submit">Go</button>
   </form>
 </div>
+
+<!-- Private Chat Button (only when logged in) -->
+<a class="chat-button" href="#">Private Chat</a>
 
 Hi {{ user.username }}!
 <form action="{% url 'logout' %}" method="post">
